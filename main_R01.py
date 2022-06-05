@@ -4,6 +4,8 @@ import random
 import pygame
 from pygame import mixer
 
+who_play = ['iddy.png','ava.png','dona.png']
+
 # Intialize the pygame
 pygame.init()
 
@@ -15,7 +17,7 @@ background = pygame.image.load('apocalypse_bg.jpg')
 background = pygame.transform.scale(background, (800, 600))
 
 # Sound
-mixer.music.load("background.wav")
+mixer.music.load("out-of-the-dark-creepy-and-scary-voices-9654.mp3")
 mixer.music.play(-1)
 
 # Caption and Icon
@@ -24,7 +26,7 @@ icon = pygame.image.load('ufo.png')
 pygame.display.set_icon(icon)
 
 # Player
-playerImg = pygame.image.load('iddy.jpeg')
+playerImg = pygame.image.load(who_play[0])
 playerImg = pygame.transform.scale(playerImg, (150, 200))
 playerX = 370
 playerY = 400
@@ -36,14 +38,14 @@ enemyX = []
 enemyY = []
 enemyX_change = []
 enemyY_change = []
-num_of_enemies = 6
+num_of_enemies = 10
 
 for i in range(num_of_enemies):
     enemyImg.append(pygame.transform.scale(pygame.image.load('zombie1.png'), (100, 100)))
     enemyX.append(random.randint(0, 736))
     enemyY.append(random.randint(50, 150))
     enemyX_change.append(1)
-    enemyY_change.append(1)
+    enemyY_change.append(20)
 
 # Bullet
 
@@ -152,10 +154,10 @@ while running:
 
         enemyX[i] += enemyX_change[i]
         if enemyX[i] <= 0:
-            enemyX_change[i] = 1
+            enemyX_change[i] = 3
             enemyY[i] += enemyY_change[i]
         elif enemyX[i] >= 736:
-            enemyX_change[i] = -1
+            enemyX_change[i] = -3
             enemyY[i] += enemyY_change[i]
 
         # Collision
